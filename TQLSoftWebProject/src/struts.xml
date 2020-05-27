@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd" >
+<struts>
+	<package name="struts_tag" extends="struts-default" namespace="/">
+	
+		<interceptors>
+			<interceptor name="loginInterceptor" class="loginInterceptor"/>
+		</interceptors>
+		
+		
+		
+		<!-- 可删除，interceptor为拦截器配置 -->
+		<action name="resetList" class="dataAction">
+			<interceptor-ref name="defaultStack"/>
+			<interceptor-ref name="loginInterceptor"/>
+			<result name="login">/Login.jsp</result>	
+			<result name="success">/index.jsp</result>
+		</action>
+		
+				
+	</package>
+</struts>
