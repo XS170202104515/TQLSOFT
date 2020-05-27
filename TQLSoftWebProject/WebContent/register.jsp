@@ -1,5 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>注册页面</title>
@@ -21,10 +23,10 @@
  
         <div id="login_control">
             <input type="button" id="btn_register" value="注册" οnclick="login();"/>
-			<a id="return_login" href="login.html">返回登录</a>
+			<a id="return_login" href="login.jsp">返回登录</a>
         </div>
     </form>
 </div>
- 
+
 </body>
 </html>
