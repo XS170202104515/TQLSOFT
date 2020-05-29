@@ -12,6 +12,11 @@
 		<!-- <property name="dialect">org.hibernate.dialect.MySQLMyISAMDialect</property> -->
 		
 		<!-- 映射文件路径 -->
+		<mapping resource="com/tqlsoft/entity/TUsermessage.hbm.xml" />
+		<mapping resource="com/tqlsoft/entity/TUser.hbm.xml" />
+		
+		<mapping resource="com/tqlsoft/entity/TAdminauthority.hbm.xml" />
+		<mapping resource="com/tqlsoft/entity/TAdministrators.hbm.xml" />
 		
 	</session-factory>
 

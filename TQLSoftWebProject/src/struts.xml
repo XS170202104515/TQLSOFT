@@ -7,14 +7,16 @@
 			<interceptor name="loginInterceptor" class="loginInterceptor"/>
 		</interceptors>
 		
+		<action name="login" class="userAction" method="logincheck">
+			<result name="success">/login.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
 		
 		
 		<!-- 可删除，interceptor为拦截器配置 -->
-		<action name="resetList" class="dataAction">
-			<interceptor-ref name="defaultStack"/>
-			<interceptor-ref name="loginInterceptor"/>
-			<result name="login">/Login.jsp</result>	
-			<result name="success">/index.jsp</result>
+		<action name="register" class="userAction" method="register">
+			<result name="login">/login.jsp</result>	
+			<result name="success">/login.jsp</result>
 		</action>
 		
 				
