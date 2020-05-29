@@ -6,7 +6,6 @@ public class TAdministrators {
 	private String adminAccount;
 	private String adminName;
 	private String adminPassword;
-	private Set TAdminauthorities;
 	public String getAdminAccount() {
 		return adminAccount;
 	}
@@ -24,12 +23,6 @@ public class TAdministrators {
 	}
 	public void setAdminPassword(String adminPassword) {
 		this.adminPassword = adminPassword;
-	}
-	public Set getTAdminauthorities() {
-		return TAdminauthorities;
-	}
-	public void setTAdminauthorities(Set tAdminauthorities) {
-		TAdminauthorities = tAdminauthorities;
 	}
 	
 	

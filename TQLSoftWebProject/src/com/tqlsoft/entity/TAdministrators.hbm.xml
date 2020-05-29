@@ -19,20 +19,6 @@
             <column name="Admin_password" length="20" not-null="true" />
         </property>
         
-        <!-- 
-        <set name="TAdminusercons" inverse="true">
-            <key>
-                <column name="Admin_account" length="20" />
-            </key>
-            <one-to-many class="com.models.TAdminusercon" />
-        </set>
-         -->
-        <set name="TAdminauthorities" inverse="true">
-            <key>
-                <column name="Admin_account" length="20" not-null="true" unique="true" />
-            </key>
-            <one-to-many class="com.tqlsoft.entity.TAdminauthority" />
-        </set>
         
     </class>
 </hibernate-mapping>
