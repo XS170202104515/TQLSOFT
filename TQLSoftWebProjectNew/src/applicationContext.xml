@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"     
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+        
+        
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/gamesystem?characterEncoding=utf-8"></property>
+		<property name="user" value="root"></property>
+		<property name="password" value="123"></property>
+		
+	</bean>
+		
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+		
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="userAction" class="com.tqlsoft.action.UserAction">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	
+	<bean id="userService" class="com.tqlsoft.service.UserService">
+		<property name="userDao" ref="userDaoImpl"></property>
+	</bean>
+	
+	<bean id="userDaoImpl" class="com.tqlsoft.dao.UserDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+		<property name="usm" ref="usm"></property>
+		<property name="tUser" ref="tUser"></property>
+	</bean>
+	
+	<bean id="gameAction" class="com.tqlsoft.action.GameAction">
+		<property name="gameService" ref="gameService"></property>
+	</bean>
+	<bean id="gameService" class="com.tqlsoft.service.GameService">
+		<property name="gameDao" ref="gameDaoImpl"></property>
+	</bean>
+	
+	<bean id="gameDaoImpl" class="com.tqlsoft.dao.GameDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
+	<bean id="shoppingtroelleyAction" class="com.tqlsoft.action.ShoppingTroelleyAction">
+		<property name="shoppingtroelleyService" ref="shoppingtroelleyService"></property>
+	</bean>
+	
+	<bean id="shoppingtroelleyService" class="com.tqlsoft.service.ShoppingTroelleyService">
+		<property name="shoppingtroelleyDao" ref="shoppingtroelleyDaoImpl"></property>
+	</bean>
+	
+	<bean id="shoppingtroelleyDaoImpl" class="com.tqlsoft.dao.ShoppingTroelleyDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
+	<bean id="changePasswordAction" class="com.tqlsoft.action.ChangePasswordAction">
+		<property name="changePasswordService" ref="changePasswordService"></property>
+	</bean>
+	
+	<bean id="changePasswordService" class="com.tqlsoft.service.ChangePasswordService">
+		<property name="changePasswordDao" ref="changePasswordDaoImpl"></property>
+	</bean>
+	
+	<bean id="changePasswordDaoImpl" class="com.tqlsoft.dao.ChangePasswordDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
+	<bean id="updateMessageAction" class="com.tqlsoft.action.UpdateMessageAction">
+		<property name="updateMessageService" ref="updateMessageService"></property>
+	</bean>
+	
+	<bean id="updateMessageService" class="com.tqlsoft.service.UpdateMessageService">
+		<property name="updateMessageDao" ref="updateMessageDaoImpl"></property>
+	</bean>
+	
+	<bean id="updateMessageDaoImpl" class="com.tqlsoft.dao.UpdateMessageDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+		<!--        以下都是zmq的           Action层                  -->
+	<bean id="ForumAction" class="com.tqlsoft.action.ForumAction">
+		<property name="forumService" ref="ForumService"></property></bean>
+	
+	<bean id="PostAction" class="com.tqlsoft.action.PostAction">
+		<property name="postService" ref="PostService"></property></bean>
+	
+	<bean id="PostWriteAction" class="com.tqlsoft.action.PostWriteAction">
+		<property name="postwriteService" ref="PostWriteService"></property></bean>
+		
+			<bean id="PostCmAction" class="com.tqlsoft.action.PostCmAction">
+		<property name="postcmService" ref="PostCmService"></property></bean>
+	
+	<!--                  Service层                 -->
+	<bean id="ForumService" class="com.tqlsoft.service.ForumService">
+		<property name="forum" ref="ForumImpl"></property></bean>
+	
+	<bean id="PostService" class="com.tqlsoft.service.PostService">
+		<property name="postdaoimpl" ref="PostDaoImpl"></property></bean>
+	
+	<bean id="PostWriteService" class="com.tqlsoft.service.PostWriteService">
+		<property name="postwritedao" ref="PostWriteDaoImpl"></property></bean>
+		
+	<bean id="PostCmService" class="com.tqlsoft.service.PostCmService">
+		<property name="postcmdaoimpl" ref="PostCmDaoImpl"></property></bean>
+
+	<!--                     Dao层                                            -->
+	<bean id="ForumImpl" class="com.tqlsoft.dao.Forumlmpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+		<property name="tgame" ref="tgame"></property>
+	</bean>
+	
+	<bean id="PostDaoImpl" class="com.tqlsoft.dao.PostDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+		<property name="tpost" ref="tpost"></property>
+		<property name="tforum" ref="tforum"></property>
+	</bean>
+	
+	
+		<bean id="PostWriteDaoImpl" class="com.tqlsoft.dao.PostWriteDaoImpl">
+			<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+			<property name="tpost" ref="tpost"></property>
+			<property name="tforum" ref="tforum"></property>
+			<property name="tuser" ref="tUser"></property>
+		</bean>
+		
+		<bean id="PostCmDaoImpl" class="com.tqlsoft.dao.PostCmDaoImpl">
+			<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+			<property name="tpostcomment" ref="tpostcomment"></property>
+			<property name="tpost" ref="tpost"></property>
+			<property name="tuser" ref="tUser"></property>
+		</bean>
+	
+	<!-- 以上都是zmq的 -->
+		
+	<!-- 添加好友 -->
+	<bean id="friendAction" class="com.tqlsoft.action.FriendAction">
+		<property name="friendService" ref="friendService"></property>
+	</bean>
+	
+	<bean id="friendService" class="com.tqlsoft.service.FriendService">
+		<property name="frienddao" ref="friendDaoImpl"></property>
+	</bean>
+	
+	<bean id="friendDaoImpl" class="com.tqlsoft.dao.FriendDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+		<property name="tuser" ref="tUser"></property>
+		<property name="tfriendlibrary" ref="tfriendlibrary"></property>
+	</bean>
+	<!-- 管理员-->
+	<bean id="adminAction" class="com.tqlsoft.action.AdminAction">
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	
+	<bean id="adminService" class="com.tqlsoft.service.AdminService">
+		<property name="adminDao" ref="adminDaoImpl"></property>
+	</bean>
+	
+	<bean id="adminDaoImpl" class="com.tqlsoft.dao.AdminDaoImple">
+			<property name="hibernateTemplate" ref="hibernateTemplate"></property>
+	</bean>
+	
+	<bean id="tfriendlibrary" class="com.tqlsoft.entity.TFriendLibrary"></bean>
+	<bean id="usm" class="com.tqlsoft.entity.Usermessage"></bean>
+	<bean id="tUser" class="com.tqlsoft.entity.TUser"></bean>
+	<bean id="tgame" class="com.tqlsoft.entity.TGame"></bean>
+	<bean id="tpost" class="com.tqlsoft.entity.TPost"></bean>
+	<bean id="tforum" class="com.tqlsoft.entity.TForum"></bean>
+	<bean id="tpostcomment" class="com.tqlsoft.entity.TPostComment"></bean>
+	
+</beans>

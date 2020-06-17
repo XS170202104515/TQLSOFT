@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.tqlsoft.entity.Usermessage" table="t_usermessage" catalog="gamesystem">    
+         <id name="userAccount" type="java.lang.String">
+            <column name="User_account" />
+            <generator class="assigned" />
+        </id> 
+        
+        <many-to-one name="TUser" class="com.tqlsoft.entity.TUser" update="false" insert="false" fetch="select">
+            <column name="User_account" not-null="true" unique="true" />
+        </many-to-one>
+        
+        <property name="userName" type="java.lang.String">
+            <column name="User_name" length="20" not-null="true" />
+        </property>
+        <property name="userPassword" type="java.lang.String">
+            <column name="User_password" length="20" not-null="true" />
+        </property>
+        <property name="userSex" type="java.lang.String">
+            <column name="User_sex" length="20" not-null="true" />
+        </property>
+        <property name="userEmail" type="java.lang.String">
+            <column name="User_email" length="20" />
+        </property>
+        <property name="userDate" type="java.lang.String">
+            <column name="User_date" length="19" not-null="true" />
+        </property>
+        <property name="userPhone" type="java.lang.String">
+            <column name="User_phone" length="20" not-null="true" />
+        </property>
+        <property name="userAge" type="java.lang.String">
+            <column name="User_age" length="4" not-null="true" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

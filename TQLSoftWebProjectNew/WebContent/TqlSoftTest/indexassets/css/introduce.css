@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.button1{
+	padding: 8px 55px 8px 55px;
+	background: #E27575;
+	border: none;
+	color: #FFF;
+	box-shadow: 1px 1px 5px #B6B6B6;
+	text-shadow: 1px 1px 1px #9E3F3F;
+	cursor: pointer; /*移动到按钮时，光标变化*/
+}
